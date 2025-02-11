@@ -1,17 +1,16 @@
 /**
- * A Novel class with private instance variables
- * “title”, “author name”, and “year published”.
+ * A Novel class with a title, author name,and year published.
  *
- * @author Ted, Nick, Mohammad
+ * @author Ted
+ * @author Nick
+ * @author Mohammad
  * @version 1.0
  * */
-
-
 
 public class Novel {
 
 
-    private final static int EARLIEST_PUBLISH_YEAR=0;
+    private final static int EARLIEST_PUBLISH_YEAR = 0;
 
     private final String title;
     private final String authorName;
@@ -19,35 +18,64 @@ public class Novel {
 
     /**
      * Constructor of Novel Object.
+     *
      * @param title novel title
      * @param authorName name of author
      * @param yearPublished Novel published year*/
     public Novel(String title, String authorName, int yearPublished)
     {
-        validateParameter(title, authorName, yearPublished);
+        validateTitle(title);
+        validateAuthorName(authorName);
+        validateYearPublished(yearPublished);
 
-        this.title = title;
-        this.authorName = authorName;
+        this.title         = title;
+        this.authorName    = authorName;
         this.yearPublished = yearPublished;
+    }
 
-        private void validateTitle(final String title,
-                                   final String authorName,
-                                   final int yearPublished)
+    /*
+     * Validates the given title of the book on criteria:
+     * 1. Cannot be null
+     * 2. Cannot be blank
+     *
+     * @param title given title
+     */
+    private static void validateTitle(final String title)
+    {
+        if(title == null ||
+           title.isBlank())
         {
-            if (title == null ||
-                    title.isBlank()||
-                    authorName == null ||
-                    authorName.isBlank()||
-                    yearPublished < EARLIEST_PUBLISH_YEAR ||
-                    yearPublished == null||
-                    yearPublished.isBlank())
-
-                throw new IllegalArgumentException(
-                        "Parameter cannot be null, " +
-                        "blank or publish year must " +
-                         "be a positive integar.");
+            throw new IllegalArgumentException("Title cannot be null or empty");
         }
+    }
 
+    /*
+     * Validates the given name for the author on criteria:
+     * 1. Cannot be null
+     * 2. Cannot be blank
+     *
+     * @param authorName given title
+     */
+    private static void validateAuthorName(final String authorName)
+    {
+        if(authorName == null ||
+           authorName.isBlank())
+        {
+            throw new IllegalArgumentException("The name of the author cannot be null or empty");
+        }
+    }
+
+    /*
+     * Validates the given year published on criteria:
+     * 1. Can not be earlier than EARLIEST_PUBLISH_YEAR
+     *
+     * @param yearPublished given year published
+     */
+    private static void validateYearPublished(final int yearPublished)
+    {
+        if (yearPublished < EARLIEST_PUBLISH_YEAR)
+
+            throw new IllegalArgumentException("Publish year must be a positive integer.");
     }
 
     /**
@@ -67,7 +95,7 @@ public class Novel {
     }
 
     /**
-     * Getter of pushlised year.
+     * Getter of published year.
      * @return int published year.
      */
     public int getYearPublished() {
