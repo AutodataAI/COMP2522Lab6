@@ -1,6 +1,10 @@
 package bcit.BookStore;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
+
 
 public class BookStoreDriver
 {
@@ -35,6 +39,8 @@ public class BookStoreDriver
         System.out.println("\nBooks with titles 15 characters long:");
         fifteenCharTitles = bookstore.getBooksThisLength(15);
         fifteenCharTitles.forEach(novel -> System.out.println(novel.getTitle()));
+
+        System.out.println(bookstore.getMapValues());
     }
 }
 

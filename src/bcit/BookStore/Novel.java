@@ -125,4 +125,16 @@ public class Novel implements Comparable<Novel>
 
         return compare;
     }
+
+    @Override
+    public String toString()
+    {
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("Novel title: " + title + "\n");
+        builder.append("Author name: " + authorName + "\n");
+        builder.append("Year published: " + yearPublished + "\n");
+
+        return builder.toString();
+    }
 }

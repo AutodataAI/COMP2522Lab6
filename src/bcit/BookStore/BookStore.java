@@ -1,7 +1,7 @@
 package bcit.BookStore;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.security.Key;
+import java.util.*;
 
 /**
  * The bcit.BookStore.BookStore
@@ -21,6 +21,8 @@ public class BookStore {
 
     private final String bookStoreName;
     private final List<Novel> novels;
+    //Hashmap used for part 2
+    private final Map<String, Novel> novelsMap = new HashMap<String, Novel>();
 
     private static final int DECADE_INDICATOR = 10;
 
@@ -131,6 +133,12 @@ public class BookStore {
         novels.add(new Novel("White Noise", "Don DeLillo", 1985));
         novels.add(new Novel("White Teeth", "Zadie Smith", 2000));
         novels.add(new Novel("Wide Sargasso Sea", "Jean Rhys", 1966));
+
+        //Adds all novels to the HashMap for part 2
+        for(Novel novel : novels)
+        {
+            novelsMap.put(novel.getTitle(), novel);
+        }
     }
 
     /*
@@ -348,4 +356,49 @@ public class BookStore {
     }
 
 
+    // Step 3: Sort the List
+    private void sortList(final List<String> list)
+    {
+        Collections.sort(list);
+    }
+
+    // Use the sorted keys to get the Map values
+    public String getMapValues()
+    {
+
+        // Step 1: Get the keys from the HashMap
+        Set<String> keySet = novelsMap.keySet();
+        // Step 2: Convert the Set to a List (because List can be sorted)
+        List<String> keyList = new ArrayList<>(keySet);
+
+        StringBuilder builder = new StringBuilder();
+        builder.append("\nList of all Keys:\n");
+        sortList(keyList);
+
+        Iterator<String> keyIterator = keyList.iterator();
+        Iterator<String> keyIterator2 = keyList.iterator();
+
+        while(keyIterator.hasNext())
+        {
+            builder.append(keyIterator.next() + "\n");
+        }
+
+        builder.append("\nList of all Keys without \"The\"\n");
+
+        //Need to figure out how to remove "the" using an iterator
+        while(keyIterator2.hasNext())
+        {
+            if(keyIterator2.next().toLowerCase().contains("the"))
+            {
+                keyIterator2.remove();
+            }
+        }
+
+        for(String novel : keyList)
+        {
+            builder.append(novelsMap.get(novel) + "\n");
+        }
+
+            return builder.toString();
+    }
 }
