@@ -277,14 +277,9 @@ public class BookStore {
      * @param first the starting year
      * @param last the ending year
      */
-    public void whichPercentWrittenBetween(final int first, final int last)
+    public int whichPercentWrittenBetween(final int first, final int last)
     {
         int percentWritten = 0;
-
-        /*This method was created as void return type so I could
-        use NumberFormat.getPercentInstance(). Can adjust later if needed
-         */
-        NumberFormat fmt = NumberFormat.getPercentInstance();
 
         for(Novel novel : novels)
         {
@@ -295,11 +290,8 @@ public class BookStore {
             }
         }
 
-        percentWritten = percentWritten / novels.size();
+        return percentWritten / novels.size();
 
-        System.out.println("Percentage of books written between "
-                           + first + " and " + last + " is "
-                           + fmt.format(percentWritten));
     }
 
     /**

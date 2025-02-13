@@ -3,6 +3,7 @@ public static void main(final String[] args) {
     final BookStore bookstore;
     final Novel oldest;
     final List<Novel> fifteenCharTitles;
+
     bookstore = new BookStore("Classic Novels Collection");
     System.out.println("All Titles in UPPERCASE:");
     bookstore.printAllTitles();
@@ -15,7 +16,7 @@ public static void main(final String[] args) {
     System.out.println("\nLongest Book Title:");
     bookstore.getLongest();
     System.out.println("\nIs there a book written in 1950?");
-    System.out.println(bookstore.isThereABookWrittenBetween(1950));
+    System.out.println(bookstore.isThereABookWrittenIn(1950));
     System.out.println("\nHow many books contain 'heart'?");
     System.out.println(bookstore.howManyBooksContain("heart"));
     System.out.println("\nPercentage of books written between 1940 and 1950:");
