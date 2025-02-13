@@ -212,6 +212,26 @@ public class BookStore {
         }
     }
 
+    /**
+     * Finds the longest title in the bookstore
+     * @return longest book title
+     */
+    public String getLongest()
+    {
+        String longest = novels.get(0).getTitle();
+
+        for(Novel checkLongest : novels)
+        {
+            if (checkLongest.getTitle().length() > longest.length())
+            {
+                longest = checkLongest.getTitle();
+            }
+        }
+        return longest;
+    }
+
+
+
     //Validator for decade, decade must be divisible by 100 evenly
     private static void validateDecade(final int decade)
             throws IllegalArgumentException
