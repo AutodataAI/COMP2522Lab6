@@ -230,7 +230,25 @@ public class BookStore {
         return longest;
     }
 
+    /**
+     * Checks all books to see if there is a book in the book store written in year
+     * and returns true or false
+     * @param year used to check if a book was written within a specific year
+     * @return wasWritten
+     */
+    public boolean isThereABookWrittenIn(final int year)
+    {
+        boolean wasWritten = false;
 
+        for(Novel novel : novels)
+        {
+            if(novel.getYearPublished() == year)
+            {
+                wasWritten = true;
+            }
+        }
+        return wasWritten;
+    }
 
     //Validator for decade, decade must be divisible by 100 evenly
     private static void validateDecade(final int decade)
