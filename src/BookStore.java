@@ -322,19 +322,19 @@ public class BookStore {
      *                    length of words
      * @return builder.toString() string builder for list of all titles
      */
-    public String getBooksThisLength(final int titleLength)
+    public List<Novel> getBooksThisLength(final int titleLength)
     {
-        StringBuilder builder = new StringBuilder();
+        List<Novel> bookLengths = new ArrayList<Novel>();
 
         for (Novel novel : novels)
         {
             if(novel.getTitle().length() == titleLength)
             {
-                builder.append(novel.getTitle());
+                bookLengths.add(novel);
             }
         }
 
-        return builder.toString();
+        return bookLengths;
     }
 
     //Validator for decade, decade must be divisible by 100 evenly
