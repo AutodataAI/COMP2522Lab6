@@ -7,9 +7,10 @@ package bcit.BookStore;
  * @author Nick
  * @author Mohammad
  * @version 1.0
- * */
+ */
 
-public class Novel {
+public class Novel implements Comparable<Novel>
+{
 
 
     private final static int EARLIEST_PUBLISH_YEAR = 0;
@@ -21,17 +22,18 @@ public class Novel {
     /**
      * Constructor of bcit.BookStore.Novel Object.
      *
-     * @param title novel title
-     * @param authorName name of author
-     * @param yearPublished bcit.BookStore.Novel published year*/
+     * @param title         novel title
+     * @param authorName    name of author
+     * @param yearPublished bcit.BookStore.Novel published year
+     */
     public Novel(String title, String authorName, int yearPublished)
     {
         validateTitle(title);
         validateAuthorName(authorName);
         validateYearPublished(yearPublished);
 
-        this.title         = title;
-        this.authorName    = authorName;
+        this.title = title;
+        this.authorName = authorName;
         this.yearPublished = yearPublished;
     }
 
@@ -44,8 +46,8 @@ public class Novel {
      */
     private static void validateTitle(final String title)
     {
-        if(title == null ||
-           title.isBlank())
+        if (title == null ||
+            title.isBlank())
         {
             throw new IllegalArgumentException("Title cannot be null or empty");
         }
@@ -60,8 +62,8 @@ public class Novel {
      */
     private static void validateAuthorName(final String authorName)
     {
-        if(authorName == null ||
-           authorName.isBlank())
+        if (authorName == null ||
+            authorName.isBlank())
         {
             throw new IllegalArgumentException("The name of the author cannot be null or empty");
         }
@@ -82,25 +84,45 @@ public class Novel {
 
     /**
      * Getter of title.
+     *
      * @return String title name.
      */
-    public String getTitle() {
+    public String getTitle()
+    {
         return title;
     }
 
     /**
      * Getter of author name.
+     *
      * @return String author name.
      */
-    public String getAuthorName() {
+    public String getAuthorName()
+    {
         return authorName;
     }
 
     /**
      * Getter of published year.
+     *
      * @return int published year.
      */
-    public int getYearPublished() {
+    public int getYearPublished()
+    {
         return yearPublished;
+    }
+
+    /**
+     * Override for compare to so that the novels can be
+     * ordered Alphabetically in the BookStore class
+     * @param compareNovel the object to be compared.
+     * @return compare
+     */
+    @Override
+    public int compareTo(Novel compareNovel)
+    {
+        int compare = title.compareTo(compareNovel.title);
+
+        return compare;
     }
 }

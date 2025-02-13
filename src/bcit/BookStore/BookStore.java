@@ -151,13 +151,13 @@ public class BookStore {
     }
 
     /**
-     * Prints all novel titles.
+     * Prints all novel titles to UPPERCASE
      */
     public void printAllTitles()
     {
         for(Novel title : novels)
         {
-            System.out.println(title.getTitle());
+            System.out.println(title.getTitle().toUpperCase());
         }
     }
 
@@ -169,7 +169,7 @@ public class BookStore {
     {
         for (Novel searchTitle : novels)
         {
-            if (searchTitle.getTitle().equals(title))
+            if (searchTitle.getTitle().toUpperCase().contains(title.toUpperCase()))
             {
                 System.out.println(searchTitle.getTitle());
             }
@@ -218,7 +218,7 @@ public class BookStore {
      * Finds the longest title in the bookstore
      * @return longest book title
      */
-    public String getLongest()
+    public void getLongest()
     {
         String longest = novels.get(0).getTitle();
 
@@ -229,7 +229,7 @@ public class BookStore {
                 longest = checkLongest.getTitle();
             }
         }
-        return longest;
+        System.out.println(longest);
     }
 
     /**
@@ -264,7 +264,7 @@ public class BookStore {
 
         for(Novel novel : novels)
         {
-            if (novel.getTitle().contains(word))
+            if (novel.getTitle().toUpperCase().contains(word.toUpperCase()))
             {
                 booksContaining++;
             }
@@ -290,8 +290,7 @@ public class BookStore {
                 percentWritten++;
             }
         }
-
-        return percentWritten / novels.size();
+        return percentWritten % novels.size();
 
     }
 
