@@ -373,11 +373,14 @@ public class BookStore {
 
         StringBuilder builder = new StringBuilder();
         builder.append("\nList of all Keys:\n");
+        //List gets sorted here
         sortList(keyList);
-
+        //One iterator to do the inital printout
         Iterator<String> keyIterator = keyList.iterator();
+        //Second iterator to trim the list to exclude "the"
         Iterator<String> keyIterator2 = keyList.iterator();
 
+        //Iterates through the list and appends all keys to stringbuilder
         while(keyIterator.hasNext())
         {
             builder.append(keyIterator.next() + "\n");
@@ -385,7 +388,8 @@ public class BookStore {
 
         builder.append("\nList of all Keys without \"The\"\n");
 
-        //Need to figure out how to remove "the" using an iterator
+        //Iterates through the list and removes all instances of
+        //"the"
         while(keyIterator2.hasNext())
         {
             if(keyIterator2.next().toLowerCase().contains("the"))
@@ -394,6 +398,9 @@ public class BookStore {
             }
         }
 
+        //Takes the now trimmed list of keys and appends the value
+        //of the key to the string builder, which is the novel's
+        //toString() method
         for(String novel : keyList)
         {
             builder.append(novelsMap.get(novel) + "\n");
