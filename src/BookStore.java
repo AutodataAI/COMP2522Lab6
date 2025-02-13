@@ -20,6 +20,8 @@ public class BookStore {
     private final String      bookStoreName;
     private final List<Novel> novels;
 
+    private static final int DECADE_INDICATOR = 10;
+
     public BookStore(final String bookStoreName)
     {
         validateBookstoreName(bookStoreName);
@@ -137,6 +139,7 @@ public class BookStore {
      * @param bookstoreName
      */
     private static void validateBookstoreName(final String bookstoreName)
+            throws IllegalArgumentException
     {
         if(bookstoreName == null ||
            bookstoreName.isBlank())
@@ -145,5 +148,78 @@ public class BookStore {
         }
     }
 
+    /**
+     * Prints all novel titles.
+     */
+    public void printAllTitles()
+    {
+        for(Novel title : novels)
+        {
+            System.out.println(title.getTitle());
+        }
+    }
+
+    /**
+     * Prints all titles that contain the specified parameter
+     * @param title used to search for book title
+     */
+    public void printBookTitle(final String title)
+    {
+        for (Novel searchTitle : novels)
+        {
+            if (searchTitle.getTitle().equals(title))
+            {
+                System.out.println(searchTitle.getTitle());
+            }
+        }
+    }
+
+    /**
+     * prints all book titles In alphabetical order
+     */
+    public void printTitlesInAlphaOrder()
+    {
+        //This should sort the novels by alphabetic order, tests required
+        novels.sort(null);
+
+        for(Novel titleAlphabetic : novels)
+        {
+            System.out.println(titleAlphabetic.getTitle());
+        }
+    }
+
+    /**
+     * Prints all books for the inputted decade
+     *
+     * @param decade used to check for a valid decade
+     */
+    public void printGroupByDecade(final int decade)
+    {
+        validateDecade(decade);
+        for(Novel novelDecade : novels)
+        {
+            /*Checking if the books decade aligns with inputted decade
+             by integer dividing both by 10.
+             2001 - 2009 / 10 = 200
+             2000 / 10 = 200
+             therefor they are in the same decade
+             */
+            if(novelDecade.getYearPublished() / DECADE_INDICATOR
+               == decade / DECADE_INDICATOR)
+            {
+                System.out.println(novelDecade.getTitle());
+            }
+        }
+    }
+
+    //Validator for decade, decade must be divisible by 100 evenly
+    private static void validateDecade(final int decade)
+            throws IllegalArgumentException
+    {
+        if(decade % 10 != 0)
+        {
+            throw new IllegalArgumentException("Invalid decade");
+        }
+    }
 
 }
