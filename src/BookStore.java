@@ -250,6 +250,28 @@ public class BookStore {
         return wasWritten;
     }
 
+    /**
+     * Checks all book titles in the novels array, and returns the
+     * amount of books containing the specified work in their title.
+     * @param word used to check if a Novel's title has this word within it
+     * @return booksContaining
+     */
+    public int howManyBooksContain(final String word)
+    {
+        int  booksContaining = 0;
+
+        for(Novel novel : novels)
+        {
+            if (novel.getTitle().contains(word))
+            {
+                booksContaining++;
+            }
+        }
+        return booksContaining;
+    }
+
+
+
     //Validator for decade, decade must be divisible by 100 evenly
     private static void validateDecade(final int decade)
             throws IllegalArgumentException
