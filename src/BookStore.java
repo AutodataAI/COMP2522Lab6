@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.text.NumberFormat;
 
 /**
  * The BookStore
@@ -17,7 +18,7 @@ import java.util.List;
 
 public class BookStore {
 
-    private final String      bookStoreName;
+    private final String bookStoreName;
     private final List<Novel> novels;
 
     private static final int DECADE_INDICATOR = 10;
@@ -270,7 +271,79 @@ public class BookStore {
         return booksContaining;
     }
 
+    /**
+     * Checks percentage of the total books were written between years
+     * first and last and prints it to the console
+     * @param first the starting year
+     * @param last the ending year
+     */
+    public void whichPercentWrittenBetween(final int first, final int last)
+    {
+        int percentWritten = 0;
 
+        /*This method was created as void return type so I could
+        use NumberFormat.getPercentInstance(). Can adjust later if needed
+         */
+        NumberFormat fmt = NumberFormat.getPercentInstance();
+
+        for(Novel novel : novels)
+        {
+            if(novel.getYearPublished() >= first
+               && novel.getYearPublished() <= last)
+            {
+                percentWritten++;
+            }
+        }
+
+        percentWritten = percentWritten / novels.size();
+
+        System.out.println("Percentage of books written between "
+                           + first + " and " + last + " is "
+                           + fmt.format(percentWritten));
+    }
+
+    /**
+     * Checks novels arrayList for the oldest book by comparing
+     * the current oldest (initialized as the 1st book in the array)
+     * book's age to the next books age sequentially until
+     * the last index in the arrayList
+     * @return oldestBook
+     */
+    public Novel getOldestBook()
+    {
+        Novel oldestBook = novels.get(0);
+
+        for(Novel novel : novels)
+        {
+            if(novel.getYearPublished() < oldestBook.getYearPublished())
+            {
+                oldestBook = novel;
+            }
+        }
+
+        return oldestBook;
+    }
+
+    /**
+     * Returns a list of all books whose titles is titleLength.
+     * @param titleLength used to check if the book title is of this
+     *                    length of words
+     * @return builder.toString() string builder for list of all titles
+     */
+    public String getBooksThisLength(final int titleLength)
+    {
+        StringBuilder builder = new StringBuilder();
+
+        for (Novel novel : novels)
+        {
+            if(novel.getTitle().length() == titleLength)
+            {
+                builder.append(novel.getTitle());
+            }
+        }
+
+        return builder.toString();
+    }
 
     //Validator for decade, decade must be divisible by 100 evenly
     private static void validateDecade(final int decade)
