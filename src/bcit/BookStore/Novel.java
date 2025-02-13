@@ -1,5 +1,7 @@
+package bcit.BookStore;
+
 /**
- * A Novel class with a title, author name,and year published.
+ * A bcit.BookStore.Novel class with a title, author name,and year published.
  *
  * @author Ted
  * @author Nick
@@ -17,11 +19,11 @@ public class Novel {
     private final int yearPublished;
 
     /**
-     * Constructor of Novel Object.
+     * Constructor of bcit.BookStore.Novel Object.
      *
      * @param title novel title
      * @param authorName name of author
-     * @param yearPublished Novel published year*/
+     * @param yearPublished bcit.BookStore.Novel published year*/
     public Novel(String title, String authorName, int yearPublished)
     {
         validateTitle(title);

@@ -1,11 +1,12 @@
+package bcit.BookStore;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.text.NumberFormat;
 
 /**
- * The BookStore
- * class has a main() method which creates a BookStore object. The BookStore contains a second instance
- * variable that is a List of Novel references; the BookStore constructor populates that ArrayList with the
+ * The bcit.BookStore.BookStore
+ * class has a main() method which creates a bcit.BookStore.BookStore object. The bcit.BookStore.BookStore contains a second instance
+ * variable that is a List of bcit.BookStore.Novel references; the bcit.BookStore.BookStore constructor populates that ArrayList with the
  * following data: (a big table of Data)
  *
  * @author Ted
@@ -254,7 +255,7 @@ public class BookStore {
     /**
      * Checks all book titles in the novels array, and returns the
      * amount of books containing the specified work in their title.
-     * @param word used to check if a Novel's title has this word within it
+     * @param word used to check if a bcit.BookStore.Novel's title has this word within it
      * @return booksContaining
      */
     public int howManyBooksContain(final String word)
@@ -346,5 +347,6 @@ public class BookStore {
             throw new IllegalArgumentException("Invalid decade");
         }
     }
+
 
 }
