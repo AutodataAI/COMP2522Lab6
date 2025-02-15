@@ -4,8 +4,8 @@ package bcit.BookStore;
  * A bcit.BookStore.Novel class with a title, author name,and year published.
  *
  * @author Ted
- * @author Nick
- * @author Mohammad
+ * @author Liam
+ * @author Lizzhan
  * @version 1.0
  */
 

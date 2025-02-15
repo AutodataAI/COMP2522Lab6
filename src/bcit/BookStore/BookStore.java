@@ -10,8 +10,8 @@ import java.util.*;
  * following data: (a big table of Data)
  *
  * @author Ted
- * @author Nick
- * @author Mohammad
+ * @author Liam
+ * @author Lizzhan
  * @version 1.0
 **/
 
