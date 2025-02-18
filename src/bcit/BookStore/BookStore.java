@@ -453,4 +453,21 @@ public class BookStore <T extends Literature> {
         }
 
     }
+
+    private List<T> items = new ArrayList<>();
+    public void addItem(T item) { items.add(item); }
+    public void printItems() {
+        for (T item : items) {
+            System.out.println(item.getTitle());
+        }
+    }
+
+    public void addNovelsToCollection(final List<? super Novel> novelCollection) {
+        for (final T item : items) {
+            if (item instanceof Novel) {
+                novelCollection.add((Novel) item);
+            }
+        }
+    }
+
 }

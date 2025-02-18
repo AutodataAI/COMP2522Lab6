@@ -1,4 +1,5 @@
 package bcit.BookStore;
+import java.util.List;
 
 /**
  * A bcit.BookStore.Novel class with a title, author name,and year published.
@@ -139,4 +140,8 @@ public class Novel extends Literature implements Comparable<Novel>
 
         return builder.toString();
     }
+
+
+
 }
+
