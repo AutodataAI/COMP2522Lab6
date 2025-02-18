@@ -21,7 +21,7 @@ public class BookStore <T extends Literature> {
     private final String bookStoreName;
     private final List<T> books;
     //Hashmap used for part 2
-    private final Map<String, Novel> novelsMap = new HashMap<String, Novel>();
+    private final Map<String, T> novelsMap = new HashMap<>();
 
     private static final int DECADE_INDICATOR = 10;
 
@@ -134,10 +134,6 @@ public class BookStore <T extends Literature> {
 //        novels.add(new Novel("Wide Sargasso Sea", "Jean Rhys", 1966));
 
         //Adds all novels to the HashMap for part 2
-//        for(Novel novel : novels)
-//        {
-//            novelsMap.put(novel.getTitle(), novel);
-//        }
     }
 
     /*
@@ -164,6 +160,14 @@ public class BookStore <T extends Literature> {
     public void addToStore (final T newBook){
         this.books.add(newBook);
     }
+
+    /**
+     * get this bookstore's size
+     * @return size, int
+     */
+    public int getBookStoreSize(){
+        return this.books.size();
+    }
     /**
      * Prints all novel titles to UPPERCASE
      */
@@ -181,13 +185,11 @@ public class BookStore <T extends Literature> {
      */
     public void printBookTitle(final String title)
     {
-        for (T searchTitle : books)
-        {
-            if (searchTitle.getTitle().toUpperCase().contains(title.toUpperCase()))
-            {
-                System.out.println(searchTitle.getTitle());
+        books.forEach((T book) -> {
+            if(book.getTitle().equalsIgnoreCase(title)){
+                System.out.println(book.getTitle());
             }
-        }
+        });
     }
 
     /**
@@ -195,13 +197,12 @@ public class BookStore <T extends Literature> {
      */
     public void printTitlesInAlphaOrder()
     {
-        //This should sort the novels by alphabetic order, tests required
-        books.sort(null);
-
-        for(T titleAlphabetic : books)
-        {
-            System.out.println(titleAlphabetic.getTitle());
-        }
+        List<String> titles = new ArrayList<>();
+        books.forEach((T book) -> {titles.add(book.getTitle());});
+        titles.sort(String :: compareToIgnoreCase);
+        titles.forEach((String title) -> {
+            System.out.println(title);
+        });
     }
 
     /**
@@ -371,6 +372,10 @@ public class BookStore <T extends Literature> {
     // Use the sorted keys to get the Map values
     public String getMapValues()
     {
+        for(T novel : books)
+        {
+            novelsMap.put(novel.getTitle(), novel);
+        }
 
         // Step 1: Get the keys from the HashMap
         Set<String> keySet = novelsMap.keySet();
@@ -413,5 +418,39 @@ public class BookStore <T extends Literature> {
         }
 
             return builder.toString();
+    }
+
+    /**
+     * static nested class BookStoreInfo
+     */
+    static class BookStoreInfo{
+        /**
+         * display BookStore's info
+         * @param storeName
+         * @param itemCount
+         */
+        public void displayInfo(final String storeName, final int itemCount) {
+            System.out.println("BookStore: " + storeName + ", Items: " + itemCount);
+        }
+    }
+
+    /**
+     * nested class NovelStatistics
+     */
+    class NovelStatistics{
+
+        /**
+         * gets average title length of the outerclass.
+         * @return average title length as double
+         */
+        public double averageTitleLength() {
+            int totalLength;
+            totalLength = 0;
+            for (final T item : books) {
+                totalLength += item.getTitle().length();
+            }
+            return (double) totalLength / books.size();
+        }
+
     }
 }

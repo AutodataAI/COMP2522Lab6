@@ -8,9 +8,9 @@ import java.util.Set;
 /**
  * To drive the program.
  *
- * @author Ted
- * @author Liam
- * @author Lizzhan
+ * @author Ted Ip
+ * @author Liam Pickrell
+ * @author Leslie Zhang
  *
  * @version 1.0
  */
@@ -151,6 +151,19 @@ public class BookStoreDriver
         fifteenCharTitles.forEach(novel -> System.out.println(novel.getTitle()));
 
         System.out.println(bookstore.getMapValues());
+
+
+        BookStore<ComicBook> comics = new BookStore<>("Comic Central");
+        comics.addToStore(new ComicBook("The Crow", "Brandon Lee", 1990));
+        comics.getLongest();
+        comics.printAllTitles();
+
+
+        BookStore<Magazine> magazines = new BookStore<>("Magazines");
+        magazines.addToStore(new Magazine("Magazine", "Harper Lee", 2000));
+        magazines.addToStore(new Magazine("Guitar World", "Eddie Van Halen", 1990));
+        magazines.getLongest();
+        magazines.printAllTitles();
 
 
     }
