@@ -9,9 +9,8 @@ package bcit.BookStore;
  * @version 1.0
  */
 
-public class Novel implements Comparable<Novel>
+public class Novel extends Literature implements Comparable<Novel>
 {
-
 
     private final static int EARLIEST_PUBLISH_YEAR = 0;
 
@@ -87,6 +86,7 @@ public class Novel implements Comparable<Novel>
      *
      * @return String title name.
      */
+    @Override
     public String getTitle()
     {
         return title;
@@ -97,6 +97,7 @@ public class Novel implements Comparable<Novel>
      *
      * @return String author name.
      */
+    @Override
     public String getAuthorName()
     {
         return authorName;
@@ -107,6 +108,7 @@ public class Novel implements Comparable<Novel>
      *
      * @return int published year.
      */
+    @Override
     public int getYearPublished()
     {
         return yearPublished;
