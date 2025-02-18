@@ -22,6 +22,7 @@ public class BookStore <T extends Literature> {
     private final List<T> books;
     //Hashmap used for part 2
     private final Map<String, T> novelsMap = new HashMap<>();
+    private List<T> items = new ArrayList<>();
 
     private static final int DECADE_INDICATOR = 10;
 
@@ -454,14 +455,24 @@ public class BookStore <T extends Literature> {
 
     }
 
-    private List<T> items = new ArrayList<>();
-    public void addItem(T item) { items.add(item); }
+    /**
+     * Add various types of literature to arraylist Items.
+     * */
+    public void addItem(T item)
+    {
+        items.add(item);
+    }
+
+    /**
+     * Print title of each item in arraylist of literature.*/
     public void printItems() {
         for (T item : items) {
             System.out.println(item.getTitle());
         }
     }
 
+    /**
+     * Add novels to a collection of novels using List*/
     public void addNovelsToCollection(final List<? super Novel> novelCollection) {
         for (final T item : items) {
             if (item instanceof Novel) {
@@ -469,5 +480,8 @@ public class BookStore <T extends Literature> {
             }
         }
     }
+
+
+
 
 }
