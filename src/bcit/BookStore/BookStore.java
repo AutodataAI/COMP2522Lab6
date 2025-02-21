@@ -162,6 +162,10 @@ public class BookStore <T extends Literature> {
         this.books.add(newBook);
     }
 
+    public List<T> getBooks() {
+        return this.books;
+    }
+
     /**
      * get this bookstore's size
      * @return size, int

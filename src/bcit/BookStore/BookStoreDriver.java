@@ -1,9 +1,6 @@
 package bcit.BookStore;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * To drive the program.
@@ -165,10 +162,33 @@ public class BookStoreDriver
         magazines.getLongest();
         magazines.printAllTitles();
 
+        List <Novel> items = bookstore.getBooks();
 
+        /**
+         * Anonymous Class overrides compare to allow the collection to be ordered
+         * by title length (not alphabetical order).
+         */
+        items.sort(new Comparator<Literature>()
+        {
+            /**
+             * The compare method overrides the other compare methods to order the
+             * collection by title length, not alphabetical order.
+             *
+             * @param o1 the first piece of literature to compare.
+             * @param o2 the second piece of literature to compare.
+             * @return the shortest title length between the two books.
+             */
+            @Override
+            public int compare(final Literature o1, final Literature o2)
+            {
+                return Integer.compare(o1.getTitle().length(), o2.getTitle().length());
+            }
+        });
+
+        bookstore.printAllTitles(); //printing all books based on their title length
 
     }
-}
+    }
 
 
 
